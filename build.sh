@@ -59,7 +59,7 @@ ZIPNAME=samsoe
 FINAL_ZIP=${ZIPNAME}-${TM}.zip
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=slim
+COMPILER=proton
 
 # Clone ToolChain
 function cloneTC() {
