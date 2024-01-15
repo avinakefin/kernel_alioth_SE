@@ -29,7 +29,7 @@ DEVICE=$2
 
 VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
-DEFCONFIG=vendor/alioth_defconfig
+DEFCONFIG=alioth_defconfig
 MODEL="Poco F3"
 elif [ "${DEVICE}" = "lmi" ]; then
 DEFCONFIG=lmi_defconfig
@@ -38,7 +38,7 @@ fi
 # Files
 IMAGE=$(pwd)/out/arch/arm64/boot/Image
 DTBO=$(pwd)/out/arch/arm64/boot/dtbo.img
-DTB=$(pwd)/out/arch/arm64/boot/dtb.img
+DTB=$(pwd)/out/arch/arm64/boot/dtb
 OUT_DIR=out/
 #dts_source=arch/arm64/boot/dts/vendor/qcom
 
