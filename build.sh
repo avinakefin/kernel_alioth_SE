@@ -29,26 +29,10 @@ DEVICE=$2
 
 VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
-DEFCONFIG=alioth_defconfig
+DEFCONFIG=vendor/alioth_defconfig
 MODEL="Poco F3"
 elif [ "${DEVICE}" = "lmi" ]; then
 DEFCONFIG=lmi_defconfig
-MODEL="Poco F2 Pro"
-elif [ "${DEVICE}" = "apollo" ]; then
-DEFCONFIG=apollo_defconfig
-MODEL="Mi 10T Pro"
-elif [ "${DEVICE}" = "munch" ]; then
-DEFCONFIG=munch_defconfig
-MODEL="Poco F4"
-elif [ "${DEVICE}" = "cas" ]; then
-DEFCONFIG=cas_defconfig
-MODEL="Mi 10 Ultra"
-elif [ "${DEVICE}" = "cmi" ]; then
-DEFCONFIG=cmi_defconfig
-MODEL="Mi 10 Pro"
-elif [ "${DEVICE}" = "umi" ]; then
-DEFCONFIG=umi_defconfig
-MODEL="Mi 10"
 fi
 
 # Files
@@ -71,11 +55,11 @@ DATE=$(TZ=Europe/Lisbon date +"%Y%m%d-%T")
 TM=$(date +"%F%S")
 
 # Specify Final Zip Name
-ZIPNAME=Nexus
-FINAL_ZIP=${ZIPNAME}-${VERSION}-${DEVICE}-RC3.0-KERNEL-AOSP-${TM}.zip
+ZIPNAME=samsoe
+FINAL_ZIP=${ZIPNAME}-${TM}.zip
 
 # Specify compiler [ proton, nexus, aosp ]
-COMPILER=neutron
+COMPILER=slim
 
 # Clone ToolChain
 function cloneTC() {
