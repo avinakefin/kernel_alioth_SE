@@ -29,7 +29,7 @@ DEVICE=$2
 
 VERSION=BETA
 if [ "${DEVICE}" = "alioth" ]; then
-DEFCONFIG=vendor/alioth_defconfig
+DEFCONFIG=alioth_defconfig
 MODEL="Poco F3"
 elif [ "${DEVICE}" = "lmi" ]; then
 DEFCONFIG=lmi_defconfig
@@ -38,7 +38,7 @@ fi
 # Files
 IMAGE=$(pwd)/out/arch/arm64/boot/Image
 DTBO=$(pwd)/out/arch/arm64/boot/dtbo.img
-DTB=$(pwd)/out/arch/arm64/boot/dtb.img
+DTB=$(pwd)/out/arch/arm64/boot/dtb
 OUT_DIR=out/
 #dts_source=arch/arm64/boot/dts/vendor/qcom
 
@@ -67,7 +67,7 @@ function cloneTC() {
 	case $COMPILER in
 	
 		proton)
-			git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
+			git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
 			PATH="${KERNEL_DIR}/clang/bin:$PATH"
 			;;
 		
@@ -233,11 +233,13 @@ START=$(date +"%s")
              -d THINLTO
            fi
 	       make -kj$(nproc --all) O=out \
-	       ARCH=arm64 \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       CROSS_COMPILE=aarch64-linux-gnu- \
-	       CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+	       CC=clang \
+	       AR=llvm-ar \
+               NM=llvm-nm \
+               OBJCOPY=llvm-objcopy \
+               OBJDUMP=llvm-objdump \
+	       STRIP=llvm-strip \
+               CROSS_COMPILE=aarch64-linux-gnu- \
 	       V=$VERBOSE 2>&1 | tee error.log
 	elif [ -d ${KERNEL_DIR}/gcc64 ];
 	   then
