@@ -197,6 +197,9 @@ out:
 }
 EXPORT_SYMBOL(vfs_statx);
 
+#ifdef CONFIG_KSU
+extern int ksu_handle_stat(int *dfd, const char __user **filename_user, int *flags);
+#endif
 
 #ifdef __ARCH_WANT_OLD_STAT
 
